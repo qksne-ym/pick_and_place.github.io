@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Pick-and-Place: A Task for Diffusion Based Imitation Learning">
+  <meta name="keywords" content="pick and place,diffusion policy, imitate learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pick-and-Place: A Task for Diffusion Based Imitate Learning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Pick-and-Place: A Task for Diffusion Based Imitate Learning</h1>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/qksne-ym/imitate_learning"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/show.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          Continuous video result
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/block.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/block_test.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/noblock.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section> -->
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Introduction. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Introduction</h2>
+          <div class="content has-text-justified">
+            <p>
+              Pick-and-place tasks are critically important in both industrial production and everyday life. Their
+              applications span
+              virtually every scenario requiring the movement of objects.
+            </p>
+            <p>
+              In these scenarios, robotic grasping and placement often cannot be achieved through simple
+              linear back-and-forth motions, particularly in complex, unstructured environments like agricultural
+              fields,
+              laboratories, and homes. These settings demand robots to perceive and understand their surroundings,
+              avoiding obstacles
+              to complete grasp-and-place tasks. Therefore, given the importance and widespread application of
+              grasp-and-place tasks,
+              research into autonomous execution of such tasks holds significant value.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Introduction. -->
+
+      <div class="content has-text-centered">
+        <figure class="image" style="max-width:1200px; margin: 0 auto;">
+          <img src="./static/images/wholeimage.png" alt="Introduction large image" style="width:100%; height:auto;">
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2 has-text-centered">Experiments</h2>
+
+      <div class="columns is-centered">
+
+        <!-- fixed-obstacle. -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3">fixed-obstacle</h2>
+            <p>
+              Avoid obstacles from two directions autonomously.
+            </p>
+            <video id="obstacle" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/block.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ fixed-obstacle. -->
+
+        <!-- moved-obstacle. -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3">moved-obstacle</h2>
+            <p>
+              Avoid obstacles not seen in training without instructions.
+            </p>
+            <video id="obstacle" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/block_test.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ moved-obstacle. -->
+
+        <!-- obstacle-free. -->
+        <div class="column">
+          <h2 class="title is-3">obstacle-free</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p>
+                Ensure robustness in grasping and placing under obstacle-free conditions.
+              </p>
+              <video id="obstacle-free" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/noblock.mp4" type="video/mp4">
+              </video>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--/ obstacle-free. -->
+
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2 has-text-centered">Results</h2>
+
+      <h3 class="title is-3 has-text-centered">Evaluation Metrics</h3>
+
+      <div class="columns is-centered">
+
+        <!-- fixed-obstacle. -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-4">fixed-obstacle</h2>
+            <img src="./static/images/fixed.png" alt="Obstacle Avoidance" style="width:100%; height:auto;">
+          </div>
+        </div>
+        <!--/ fixed-obstacle. -->
+
+        <!-- moved-obstacle. -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-4">moved-obstacle</h2>
+            <img src="./static/images/obstacle.png" alt="Obstacle Avoidance" style="width:100%; height:auto;">
+          </div>
+        </div>
+        <!--/ moved-obstacle. -->
+
+        <!-- obstacle-free. -->
+        <div class="column">
+          <h2 class="title is-4">obstacle-free</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <img src="./static/images/empty.jpg" alt="Obstacle Avoidance" style="width:100%; height:auto;">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--/ obstacle-free. -->
+
+      <h3 class="title is-3 has-text-centered">Results</h3>
+
+      <!-- 添加表格 -->
+      <div class="content has-text-centered">
+        <h3 class="title is-4">Results Summary</h3>
+        <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Experiment</th>
+              <th>Result</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Moved-Obstacle Avoidance</td>
+              <td>98.6%</td>
+              <td>The model demonstrates its generalization ability to the locations of obstacles.</td>
+            </tr>
+            <tr>
+              <td>Fixed-Obstacle Avoidance</td>
+              <td>98.4%</td>
+              <td>Algorithm performed well in obstacle environments.</td>
+            </tr>
+            <tr>
+              <td>Obstacle-Free Grasping</td>
+              <td>95.2%</td>
+              <td>Robust performance under ideal conditions.</td>
+            </tr>
+            <tr>
+              <td>Overall Efficiency</td>
+              <td>High</td>
+              <td>Optimized for generalization and accuracy.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
